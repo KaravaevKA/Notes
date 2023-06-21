@@ -18,22 +18,38 @@ def create_note():
     file = open('Notes_list.csv', 'a+',encoding='utf-8')
     note_topic = input(str("Введите заголовок заметки: "))
     note_text = input(str("Введите текст заметки: "))
-    notes = list()
-    date=list()
-    current_time=str(datetime.fromtimestamp(1687374769))
-    date.append(current_time)
     n = Note(note_topic,note_text)
     x=(n.__repr__())
+
+    current_time=str(datetime.fromtimestamp(1687374769)) 
+    notes = list()
+    date=list()
+    # id=list()
+    # id.append(str(i))
+
     notes.append(x)
+    date.append(current_time)
     data = list(*zip(notes,date))
     for line in data:
-        file.write((line) + ' ')
+        file.write((line) + '; ')
 
     file.write('\n')
 
     file.close()
 
-create_note()
+def note_remove():
+    find = str(input('Выберите заметку: '))
+    file = open('Notes_list.csv', encoding = 'utf-8')
+    list_1 = list()
+    for line in file:
+        if find not in line:
+            list_1.append(line)
+    file.close()
+    file = open('Notes_list.csv', 'w',encoding='utf-8')
+    for line in list_1:
+        file.write(line)
+    file.close()
+
 
     
     
