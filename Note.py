@@ -1,4 +1,4 @@
-
+from datetime import datetime,timezone
 
 
 class Note:
@@ -14,16 +14,18 @@ class Note:
         return self.__str__()
 
 
-
 def create_note():
     file = open('Notes_list.csv', 'a+',encoding='utf-8')
     note_topic = input(str("Введите заголовок заметки: "))
     note_text = input(str("Введите текст заметки: "))
     notes = list()
+    date=list()
+    current_time=str(datetime.fromtimestamp(1687374769))
+    date.append(current_time)
     n = Note(note_topic,note_text)
     x=(n.__repr__())
     notes.append(x)
-    data = list(*zip(notes))
+    data = list(*zip(notes,date))
     for line in data:
         file.write((line) + ' ')
 
