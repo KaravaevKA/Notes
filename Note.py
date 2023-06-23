@@ -21,14 +21,12 @@ def create_note():
     n = Note(note_topic,note_text)
     x=(n.__repr__())
 
-    current_time=str(datetime.fromtimestamp(1687374769)) 
+    current_time=(datetime.now())
     notes = list()
     date=list()
-    # id=list()
-    # id.append(str(i))
 
     notes.append(x)
-    date.append(current_time)
+    date.append(str(current_time))
     data = list(*zip(notes,date))
     for line in data:
         file.write((line) + '; ')
@@ -38,6 +36,8 @@ def create_note():
     print("Заметка успешно сохранена")
 
     file.close()
+
+
 
 def note_remove():
     find = str(input('Выберите заметку: '))
@@ -58,7 +58,34 @@ def print_notes():
         print(line)
     file.close()
 
-# create_note()
-print_notes()
-    
-    
+
+def edit_note():
+    note_remove()
+    create_note()
+
+
+def Selection_menu(choice) ->int:
+  if choice == 1:
+    print_notes()
+  elif choice == 2:
+    create_note()
+  elif choice == 3:
+    note_remove()
+  elif choice == 4:
+    edit_note()
+
+
+while True:
+  print('\nВыберите необходимое действие:\n'
+          "1. Отобразить все заметки\n"
+          "2. Добавить заметку\n"
+          "3. Удалить заметку\n"
+          "4. Редактирование заметки\n"
+          "5. Закончить работу")
+  choice=int(input())
+  if 1<=choice<=4:
+    Selection_menu(choice)
+  elif choice==5:
+    break
+  else: print('Ошибка')
+
