@@ -35,6 +35,8 @@ def create_note():
 
     file.write('\n')
 
+    print("Заметка успешно сохранена")
+
     file.close()
 
 def note_remove():
@@ -50,6 +52,13 @@ def note_remove():
         file.write(line)
     file.close()
 
+def print_notes():
+    file = open('Notes_list.csv', 'r', encoding='utf-8')
+    for line in file:
+        print(line)
+    file.close()
 
+# create_note()
+print_notes()
     
     
